@@ -8,6 +8,7 @@ env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: PlayWrightLinuxNet6/publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
+  DOTNET_CORE_VERSION_PLAYWRIGHT: 5.0.x
   WORKING_DIRECTORY: PlayWrightLinuxNet6
   PLAYWRIGHT_BROWSERS_PATH: PlayWrightLinuxNet6/publish/.playwright/ms-playwright
 
@@ -20,6 +21,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Setup .NET Core for Playwright
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_CORE_VERSION_PLAYWRIGHT }}
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
